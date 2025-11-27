@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { PORTFOLIO_DATA } from '../../data/data';
+import { ToastService } from '../../services/toast-service';
 
 @Component({
   selector: 'app-email-button',
@@ -16,5 +17,13 @@ export class EmailButton {
   navigator.clipboard.writeText(text)
     .then(() => console.log("Copied"))
     .catch(err => console.error("Clipboard failed:", err));
+  }
+
+  constructor(private toast: ToastService){
+
+  }
+  showAlert() {
+    console.log(this.email);
+    this.toast.show('Email Copied Successfully');
   }
 }

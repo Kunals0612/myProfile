@@ -1,54 +1,46 @@
 <!-- Full Wrapper -->
-<div class="flex flex-col items-center w-full bg-[#F5F5F5] min-h-screen pb-10">
+<div class="flex flex-col gap-8 w-full bg-white rounded-[10px] py-6 px-8 shadow-[0px_4px_10px_-2px_rgba(0,0,0,0.1)] mb-4">
   <!-- Main Content Card -->
-  <div class="bg-white rounded-[12px] shadow-sm w-full max-w-xl mt-6 p-6 flex flex-col gap-6">
+   <div class="flex flex-col gap-5 px-2">
     <!-- Header Row -->
-    <div class="flex justify-between items-start">
+    <div class="flex justify-between items-center w-full ">
       <!-- Logo -->
       <div
-        class="lg:w-14 lg:h-14 h-11 w-11 flex items-center justify-center rounded-full bg-[linear-gradient(to_bottom,#eaeaea80,#f6f6f680,#eaeaea80)] border border-[#E0E0E0] shrink-0"
-      >
-        <img [src]="detail.logo" class="w-14 h-14 rounded-lg" />
+        class="sm:w-14 sm:h-14 h-12 w-12 flex items-center justify-center rounded-full bg-[linear-gradient(to_bottom,#eaeaea80,#f6f6f680,#eaeaea80)] border border-[#E0E0E0] shrink-0">
+        <img [src]="detail.logo" class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg" />
       </div>
-
+    
       <!-- Duration (Experience) OR nothing for Projects -->
-      <p *ngIf="type === 'experience'" class="text-gray-500 text-sm">
+      <p *ngIf="type === 'experience'" class="text-[#5B5B5B] text-sm">
         {{ detail.period }}
       </p>
-
-      <p *ngIf="type === 'project'" class="text-gray-500 text-sm">
+    
+      <p *ngIf="type === 'project'" class="text-[#5B5B5B] text-sm">
         {{ detail.tech.join(', ') }}
       </p>
     </div>
+    
+    <div class="flex flex-col gap-4 w-full text-justify mb-4">
+      <h1 class="text-2xl font-semibold">
+        {{ detail.title || detail.role }}
+      </h1>
+    
+      <!-- Bullet Points -->
+      <ul class="list-disc flex flex-col pl-5 gap-2 text-sm sm:text-base text-[#5B5B5B] font-medium tracking-tight">
+        <li *ngFor="let p of detail.points">
+          {{ p }}
+        </li>
+      </ul>
+    
+    </div>
 
-    <!-- Title -->
-    <h1 class="text-2xl font-semibold">
-      {{ detail.title || detail.role }}
-    </h1>
-
-    <!-- Bullet Points -->
-    <ul class="list-disc pl-6 flex flex-col gap-2 text-[15px] text-[#5B5B5B]">
-      <li *ngFor="let p of detail.points">
-        {{ p }}
-      </li>
-    </ul>
-
-    <!-- Visit website button -->
-    <button
-      *ngIf="detail.link"
-      (click)="open(detail.link)"
-      class="flex items-center gap-2 bg-[#2f2f2f] text-white px-4 py-2 rounded-lg w-fit transition-all duration-300 hover:opacity-90"
-    >
+    <button *ngIf="detail.link" (click)="open(detail.link)"
+      class="flex items-center gap-2 bg-[#2f2f2f] text-white px-4 py-2 rounded-[10px] w-fit transition-all duration-300 hover:opacity-90 mb-2">
       Visit website →
     </button>
 
-    <!-- Divider -->
-    <hr class="border-gray-300" />
-
-    <!-- Connect Section -->
-    <app-connect></app-connect>
-
-    <!-- Follow Me Section -->
-    <app-follow-block></app-follow-block>
-  </div>
+   </div>
+  <hr class=" border border-[#E0E0E0]" />
+  <app-connect></app-connect>
+  <app-follow-block></app-follow-block>
 </div>
